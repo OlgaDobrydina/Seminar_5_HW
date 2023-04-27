@@ -5,8 +5,8 @@
 int Lenght = PrintDigital("Введите длину массива ");
 int[] array = RandomArray(Lenght);
 PrintArray(array);
-int max = MaxDigital(array);
 int min = MinDigital(array);
+int max = MaxDigital(array);
 RaznArray(min, max);
 
 int PrintDigital(string mes)
@@ -23,7 +23,7 @@ int[] RandomArray(int Lenght)
     Random random = new Random();
     for (int i = 0; i < array.Length; i++)
     {
-        array[i] = random.Next();
+        array[i] = random.Next(1, 100);
     }
     return array;   
 } 
@@ -39,17 +39,17 @@ void PrintArray(int[] array)
 
 int MaxDigital(int[] array)
 {
-   int i = 0;
-   int maxNum = array[0];
-   while (i < array.Length)
-   {
-     if (array[i] > maxNum)
-     { 
-        maxNum = array[i];
-        i++;
-     }
-   } 
-   Console.WriteLine("max = " + maxNum);
+    int maxNum = array[0]; 
+    int maxNum_index = 0; 
+    int i;  
+ 
+    for ( i = 1; i < array.Length; ++i) 
+        if(maxNum < array[i]) 
+        { 
+            maxNum = array[i]; 
+            maxNum_index = i; 
+        } 
+        return array[maxNum_index];
 }
 
 int MinDigital(int[] array)
@@ -58,17 +58,18 @@ int MinDigital(int[] array)
    int minNum = array[0];
    while (i < array.Length)
    {
-     if (array[i] < minNum)
+     if (array[1] < minNum)
      { 
-        minNum = array[i];
+        minNum = array[1];
         i++;
      }
+     else minNum = array[0]; 
    } 
-   Console.WriteLine("min = " + minNum);
+   return minNum;
 }
 
 void RaznArray(int min, int max)
 {
-    int result = max - min;
-    Console.WriteLine(" Разность " + result);
+  int result = max - min;
+  Console.WriteLine(" Разность " + result);
 }
